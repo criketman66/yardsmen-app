@@ -1,28 +1,41 @@
-import React from 'react';
-import { TabNavigator, StackNavigator } from 'react-navigation';
+import { StackNavigator, DrawerNavigator, TabNavigator } from 'react-navigation';
+import { Login, Register, ForgotPass } from '../components';
+import { CustomerDashboard, CustomerEventListing, CustomerOrderListing } from '../screens';
+import { Styles } from '../common';
 
-import Home from '../screens/Home';
-import About from '../screens/About';
-import Services from '../screens/Services';
-import Contact from '../screens/Contact';
-
-export const Tabs = TabNavigator({
-  Home: {
-    screen: Home
+export const ProfileTabs = TabNavigator({
+  CustomerDashboard: {
+    screen: CustomerDashboard
   },
-  About: {
-    screen: About
+  CustomerEventListing: {
+    screen: CustomerEventListing
   },
-  Services: {
-    screen: Services
-  },
-  Contact: {
-    screen: Contact
-  },
-}, {
-  tabBarOptions: {
-    labelStyle: {
-      fontSize: 14
-    }
+  CustomerOrderListing: {
+    screen: CustomerOrderListing
   }
+}, {
+  tabBarPosition: 'bottom',
+  tabBarOptions: {
+    labelStyle: Styles.footerLabel,
+    showIcon: true,
+    style: Styles.footer
+  }
+});
+
+export const Drawer = DrawerNavigator({
+  Login: {
+    screen: Login
+  },
+  Register: {
+    screen: Register
+  },
+  ForgotPass: {
+    screen: ForgotPass
+  },
+  Profile: {
+    screen: ProfileTabs
+  }
+}, {
+  initialRouteName: 'Login',
+  drawerPosition: 'left'
 });
